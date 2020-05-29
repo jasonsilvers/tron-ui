@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
-import { ExampleComponent } from 'tron-ui'
+import { Example } from "tron-ui";
 
 
 function App() {
   return (
     <div className="App">
-      <h1>Test</h1>
-      <ExampleComponent text="hello" />
-      <h2>Test 2</h2>
+      <Example> This is a banner</Example>
     </div>
   );
 }

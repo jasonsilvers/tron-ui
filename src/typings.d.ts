@@ -4,10 +4,11 @@
  */
 declare module '*.css' {
   const content: { [className: string]: string };
-  export default content;
+  export default content
 }
 
-interface SvgrComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
+interface SvgrComponent
+  extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
 
 declare module '*.svg' {
   const svgUrl: string;

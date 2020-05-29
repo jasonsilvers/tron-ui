@@ -21,7 +21,8 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "build:tachyons": "postcss src/css/base.css -o src/css/tachyons.css"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -49,9 +50,17 @@
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "tachyons": "^4.12.0"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "autoprefixer": "^9.8.0",
+    "emotion-theming": "^10.0.27",
+    "postcss-cli": "^7.1.1"
+  }
 }
