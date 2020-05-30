@@ -1,10 +1,9 @@
-/// <reference types="react" />
 declare const theme: {
     breakpoints: string[];
     space: number[];
     fontSizes: number[];
-    borderWidths: import("react").ReactText[];
-    radii: import("react").ReactText[];
+    borderWidths: (string | number)[];
+    radii: (string | number)[];
     lineHeights: string[];
     measures: string[];
     typefaces: {

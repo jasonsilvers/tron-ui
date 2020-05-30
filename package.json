@@ -1,10 +1,13 @@
 {
-  "name": "tron-ui",
+  "name": "@jason.silvers/tron-ui",
   "version": "1.0.0",
   "description": "UI Component library",
   "author": "jasonsilvers",
   "license": "MIT",
-  "repository": "jasonsilvers/tron-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsilvers/tron-ui.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -20,9 +23,8 @@
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
-    "build:tachyons": "postcss src/css/base.css -o src/css/tachyons.css"
+    "predeploy": "cd example && npm install && npm run build",
+    "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -59,8 +61,13 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
-    "autoprefixer": "^9.8.0",
-    "emotion-theming": "^10.0.27",
-    "postcss-cli": "^7.1.1"
+    "emotion-theming": "^10.0.27"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonsilvers/tron-ui/issues"
+  },
+  "homepage": "https://github.com/jasonsilvers/tron-ui#readme",
+  "directories": {
+    "example": "example"
   }
 }

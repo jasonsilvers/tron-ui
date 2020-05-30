@@ -1,8 +1,7 @@
 import { createElement } from 'react';
 
-const Example = ({
-  children
-}) => {
+var Example = function Example(_ref) {
+  var children = _ref.children;
   return createElement("div", {
     className: 'flex items-center justify-center pa4 bg-lightest-blue navy'
   }, createElement("svg", {

@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save tron-ui
+npm i @jason.silvers/tron-ui
 ```
 
 ## Usage
