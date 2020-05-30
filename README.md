@@ -2,7 +2,7 @@
 
 > UI Component library
 
-[![NPM](https://img.shields.io/npm/v/tron-ui.svg)](https://www.npmjs.com/package/tron-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/tron-ui.svg)](https://www.npmjs.com/package/@jason.silvers/tron-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
