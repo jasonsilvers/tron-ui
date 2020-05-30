@@ -1,14 +1,15 @@
-import React from 'react';
-import './App.css';
-import { Example } from "tron-ui";
+import React from 'react'
+import './App.css'
+import {ThemeProvider, Example } from 'tron-ui'
 
-
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <Example> This is a banner</Example>
-    </div>
-  );
+    <ThemeProvider>
+      <div className='App'>
+        <Example> This is a banner</Example>
+      </div>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App

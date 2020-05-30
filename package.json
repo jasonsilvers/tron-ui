@@ -1,6 +1,6 @@
 {
   "name": "@jason.silvers/tron-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "UI Component library",
   "author": "jasonsilvers",
   "license": "MIT",
@@ -26,9 +26,6 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
-  "peerDependencies": {
-    "react": "^16.0.0"
-  },
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.27",
@@ -50,19 +47,19 @@
     "gh-pages": "^2.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "tachyons": "^4.12.0"
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
+    "tachyons": "^4.12.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "emotion-theming": "^10.0.27"
   },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "files": [
+    "dist"
+  ],
   "bugs": {
     "url": "https://github.com/jasonsilvers/tron-ui/issues"
   },

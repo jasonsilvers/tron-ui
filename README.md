@@ -28,3 +28,14 @@ class Example extends Component {
 ## License
 
 MIT © [jasonsilvers](https://github.com/jasonsilvers)
+
+## Development
+
+If invalid hook warning 
+
+https://reactjs.org/warnings/invalid-hook-call-warning.html
+
+cd to root - tron-ui
+npm link example/node_modules/react
+
+This will make the library use the application's react copy
