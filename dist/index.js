@@ -2007,14 +2007,13 @@ function useTheme() {
 
 var Example = function Example(_ref) {
   var children = _ref.children;
-  debugger;
 
   var _useTheme = useTheme(),
       colors = _useTheme.colors;
 
   return jsx("div", null, jsx("div", {
     css: {
-      color: colors.primary
+      color: colors.secondary
     }
   }, "Test"), jsx("div", {
     className: 'flex items-center justify-center pa4 bg-lightest-blue navy'
@@ -2034,7 +2033,8 @@ var Example = function Example(_ref) {
 
 var theme = {
   colors: {
-    primary: '#ff4136'
+    primary: '#ff4136',
+    secondary: '#00449e'
   }
 };
 

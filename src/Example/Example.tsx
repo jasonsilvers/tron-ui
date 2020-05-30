@@ -11,7 +11,7 @@ const Example: FunctionComponent<Props> = ({ children }) => {
   const { colors } = useTheme()
   return (
     <div>
-      <div css={{ color: colors.primary }}>Test</div>
+      <div css={{ color: colors.secondary }}>Test</div>
       <div className='flex items-center justify-center pa4 bg-lightest-blue navy'>
         <svg
           className='w1'

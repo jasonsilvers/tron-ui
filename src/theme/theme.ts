@@ -3,6 +3,7 @@
 export interface DefaultTheme {
   colors: {
     primary: string
+    secondary: string
   }
 }
 
@@ -55,7 +56,8 @@ export const theme: DefaultTheme = {
   //   }
   // },
   colors: {
-    primary: '#ff4136'
+    primary: '#ff4136',
+    secondary: '#00449e'
     // 'dark-red': '#e7040f',
     // 'red': '#ff4136',
     // 'light-red': '#ff725c',
