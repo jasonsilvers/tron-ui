@@ -44,7 +44,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^3.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react-scripts": "^3.4.1",
@@ -63,7 +63,7 @@
   "bugs": {
     "url": "https://github.com/jasonsilvers/tron-ui/issues"
   },
-  "homepage": "https://github.com/jasonsilvers/tron-ui#readme",
+  "homepage": "https://jasonsilvers.github.io/tron-ui",
   "directories": {
     "example": "example"
   }
