@@ -2002,17 +2002,17 @@ function useTheme() {
   return React__default.useContext(ThemeContext);
 }
 
-var Example = function Example(_ref) {
-  var children = _ref.children;
-
-  var _useTheme = useTheme(),
-      colors = _useTheme.colors;
-
+const Example = ({
+  children
+}) => {
+  const {
+    colors
+  } = useTheme();
   return jsx("div", null, jsx("div", {
     css: {
       color: colors.secondary
     }
-  }, "Test"), jsx("div", {
+  }, "Test Test"), jsx("div", {
     className: 'flex items-center justify-center pa4 bg-lightest-blue navy'
   }, jsx("svg", {
     className: 'w1',
@@ -2028,23 +2028,24 @@ var Example = function Example(_ref) {
   }, children)));
 };
 
-var theme = {
+const theme = {
   colors: {
     primary: '#ff4136',
     secondary: '#00449e'
   }
 };
 
-var ThemeProvider$1 = function ThemeProvider$1(_ref) {
-  var theme = _ref.theme,
-      children = _ref.children;
+const ThemeProvider$1 = ({
+  theme,
+  children
+}) => {
   return jsx(ThemeProvider, {
     theme: theme
   }, children);
 };
 
 ThemeProvider$1.defaultProps = {
-  theme: theme
+  theme
 };
 
 export { Example, ThemeProvider$1 as ThemeProvider };

@@ -2015,7 +2015,7 @@ var Example = function Example(_ref) {
     css: {
       color: colors.secondary
     }
-  }, "Test"), jsx("div", {
+  }, "Test Test"), jsx("div", {
     className: 'flex items-center justify-center pa4 bg-lightest-blue navy'
   }, jsx("svg", {
     className: 'w1',
