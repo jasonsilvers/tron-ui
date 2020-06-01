@@ -1,13 +1,13 @@
 /// <reference types="react" />
-import { ITheme } from '../theme/theme';
+import { MyTheme } from '../theme/theme';
 declare type Props = {
     children: React.ReactNode;
-    theme: ITheme;
+    theme: MyTheme;
 };
 declare const ThemeProvider: {
     ({ theme, children }: Props): JSX.Element;
     defaultProps: {
-        theme: import("../theme/theme").DefaultTheme;
+        theme: MyTheme;
     };
 };
 export default ThemeProvider;

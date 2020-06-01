@@ -68,5 +68,8 @@
   "homepage": "https://jasonsilvers.github.io/tron-ui",
   "directories": {
     "example": "example"
+  },
+  "dependencies": {
+    "emotion": "^10.0.27"
   }
 }

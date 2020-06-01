@@ -4,7 +4,7 @@
 
 [![NPM](https://img.shields.io/npm/v/tron-ui.svg)](https://www.npmjs.com/package/@jason.silvers/tron-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Demo
+## Demo/Docs
 https://jasonsilvers.github.io/tron-ui/
 
 ## Install
@@ -13,13 +13,34 @@ https://jasonsilvers.github.io/tron-ui/
 npm i @jason.silvers/tron-ui
 ```
 
+Add Icons
+```bash
+npm install react-icons --save
+```
+
+Add font
+```css
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+htlml {
+  font-family: 'Roboto', sans-serif;
+}
+```
+
+Add theme
+
+Tron-Ui is based on guidance from Refactoring UI and sets up a color palette
+of Pimary, Neutral and Accents. 
+
+You can create your own theme by creating a theme.ts file and adding it to the theme provider. 
+
+
 ## Usage
 
 ```tsx
 import React, { Component } from 'react'
 
 import MyComponent from 'tron-ui'
-import 'tron-ui/dist/index.css'
 
 class Example extends Component {
   render() {
@@ -53,3 +74,8 @@ a) npm link react
 b) npm link react-dom
 
 3)Stop your dev-server and do `npm start` again.
+
+
+##Type Support
+Typing Theme --- not working for now
+https://github.com/emotion-js/emotion/pull/1609

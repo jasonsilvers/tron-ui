@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
-import { FunctionComponent } from 'react'
+import { cx, css } from 'emotion'
+import React, { FunctionComponent } from 'react'
 import { useTheme } from 'emotion-theming'
 
 interface OwnProps {}
@@ -9,10 +8,17 @@ type Props = OwnProps
 
 const Example: FunctionComponent<Props> = ({ children }) => {
   const { colors } = useTheme()
+
+  const primaryStyles = css({
+    backgroundColor: colors.primary.P900,
+    color: colors.primary.P100
+  })
+
   return (
     <div>
-      <div css={{ color: colors.secondary }}>Test Test</div>
-      <div className='flex items-center justify-center pa4 bg-lightest-blue navy'>
+      <div
+        className={cx(`${primaryStyles} flex items-center justify-center pa4`)}
+      >
         <svg
           className='w1'
           data-icon='info'

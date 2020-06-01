@@ -1,4 +1,22 @@
-import React__default, { createContext, forwardRef, createElement } from 'react';
+import { css, cx } from 'emotion';
+import React, { createContext, forwardRef, createElement } from 'react';
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var defineProperty = _defineProperty;
 
 /*
 
@@ -1687,23 +1705,6 @@ var ClassNames = withEmotionCache(function (props, context) {
   });
 });
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var defineProperty = _defineProperty;
-
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
@@ -1999,7 +2000,7 @@ var ThemeProvider = function ThemeProvider(props) {
 };
 
 function useTheme() {
-  return React__default.useContext(ThemeContext);
+  return React.useContext(ThemeContext);
 }
 
 const Example = ({
@@ -2008,30 +2009,86 @@ const Example = ({
   const {
     colors
   } = useTheme();
-  return jsx("div", null, jsx("div", {
-    css: {
-      color: colors.secondary
-    }
-  }, "Test Test"), jsx("div", {
-    className: 'flex items-center justify-center pa4 bg-lightest-blue navy'
-  }, jsx("svg", {
+  const primaryStyles = css({
+    backgroundColor: colors.primary.P900,
+    color: colors.primary.P100
+  });
+  return React.createElement("div", null, React.createElement("div", {
+    className: cx(`${primaryStyles} flex items-center justify-center pa4`)
+  }, React.createElement("svg", {
     className: 'w1',
     "data-icon": 'info',
     viewBox: '0 0 32 32',
     style: {
       fill: 'currentcolor'
     }
-  }, jsx("title", null, "info icon"), jsx("path", {
+  }, React.createElement("title", null, "info icon"), React.createElement("path", {
     d: 'M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6'
-  })), jsx("span", {
+  })), React.createElement("span", {
     className: 'lh-title ml3'
   }, children)));
 };
 
 const theme = {
   colors: {
-    primary: '#ff4136',
-    secondary: '#00449e'
+    primary: {
+      P100: '#003E6B',
+      P200: '#0A558C',
+      P300: '#0F609B',
+      P400: '#186FAF',
+      P500: '#2680C2',
+      P600: '#4098D7',
+      P700: '#62B0E8',
+      P800: '#84C5F4',
+      P900: '#B6E0FE',
+      P1000: '#DCEEFB'
+    },
+    secondary: {
+      S100: '#8D2B0B',
+      S200: '#B44D12',
+      S300: '#CB6E17',
+      S400: '#DE911D',
+      S500: '#F0B429',
+      S600: '#F7C948',
+      S700: '#FADB5F',
+      S800: '#FCE588',
+      S900: '#FFF3C4',
+      S1000: '#FFFBEA'
+    },
+    neutrals: {
+      N100: '#102A43',
+      N200: '#243B53',
+      N300: '#334E68',
+      N400: '#486581',
+      N500: '#627D98',
+      N600: '#829AB1',
+      N700: '#9FB3C8',
+      N800: '#BCCCDC',
+      N900: '#D9E2EC',
+      N1000: '#F0F4F8'
+    },
+    support: {
+      error: {
+        light: '#e57373',
+        main: '#f44336',
+        dark: '#d32f2f'
+      },
+      warning: {
+        light: '#ffb74d',
+        main: '#ff9800',
+        dark: '#f57c00'
+      },
+      info: {
+        light: '#64b5f6',
+        main: '#2196f3',
+        dark: '#1976d2'
+      },
+      success: {
+        light: '#81c784',
+        main: '#4caf50',
+        dark: '#388e3c'
+      }
+    }
   }
 };
 
@@ -2048,5 +2105,5 @@ ThemeProvider$1.defaultProps = {
   theme
 };
 
-export { Example, ThemeProvider$1 as ThemeProvider };
+export { Example, ThemeProvider$1 as ThemeProvider, theme };
 //# sourceMappingURL=index.modern.js.map

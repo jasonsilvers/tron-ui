@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
-import theme, { ITheme } from '../theme/theme'
+import { MyTheme } from '../theme/theme'
+import { theme } from '../theme/defaultTheme'
 
 type Props = {
   children: React.ReactNode
-  theme: ITheme
+  theme: MyTheme
 }
 
 const ThemeProvider = ({ theme, children }: Props) => {

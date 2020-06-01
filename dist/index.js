@@ -1,7 +1,25 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React__default = require('react');
-var React__default__default = _interopDefault(React__default);
+var emotion = require('emotion');
+var React = require('react');
+var React__default = _interopDefault(React);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var defineProperty = _defineProperty;
 
 /*
 
@@ -1438,24 +1456,24 @@ var serializeStyles = function serializeStyles(args, registered, mergedProps) {
   };
 };
 
-var EmotionCacheContext = React__default.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
+var EmotionCacheContext = React.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
 // because this module is primarily intended for the browser and node
 // but it's also required in react native and similar environments sometimes
 // and we could have a special build just for that
 // but this is much easier and the native packages
 // might use a different theme context in the future anyway
 typeof HTMLElement !== 'undefined' ? createCache() : null);
-var ThemeContext = React__default.createContext({});
+var ThemeContext = React.createContext({});
 
 var withEmotionCache = function withEmotionCache(func) {
   var render = function render(props, ref) {
-    return React__default.createElement(EmotionCacheContext.Consumer, null, function (cache) {
+    return React.createElement(EmotionCacheContext.Consumer, null, function (cache) {
       return func(props, cache, ref);
     });
   }; // $FlowFixMe
 
 
-  return React__default.forwardRef(render);
+  return React.forwardRef(render);
 };
 
 // thus we only need to replace what is a valid character for JS, but not for CSS
@@ -1509,7 +1527,7 @@ var render = function render(cache, props, theme, ref) {
 
   newProps.ref = ref;
   newProps.className = className;
-  var ele = React__default.createElement(type, newProps);
+  var ele = React.createElement(type, newProps);
 
   return ele;
 };
@@ -1519,7 +1537,7 @@ var Emotion =
 withEmotionCache(function (props, cache, ref) {
   // use Context.read for the theme when it's stable
   if (typeof props.css === 'function') {
-    return React__default.createElement(ThemeContext.Consumer, null, function (theme) {
+    return React.createElement(ThemeContext.Consumer, null, function (theme) {
       return render(cache, props, theme, ref);
     });
   }
@@ -1537,7 +1555,7 @@ var jsx = function jsx(type, props) {
 
   if (props == null || !hasOwnProperty.call(props, 'css')) {
     // $FlowFixMe
-    return React__default.createElement.apply(undefined, args);
+    return React.createElement.apply(undefined, args);
   }
 
   if (process.env.NODE_ENV !== 'production' && typeof props.css === 'string' && // check if there is a css declaration
@@ -1583,7 +1601,7 @@ var jsx = function jsx(type, props) {
   } // $FlowFixMe
 
 
-  return React__default.createElement.apply(null, createElementArgArray);
+  return React.createElement.apply(null, createElementArgArray);
 };
 
 var classnames = function classnames(args) {
@@ -1645,7 +1663,7 @@ function merge(registered, css, className) {
 }
 
 var ClassNames = withEmotionCache(function (props, context) {
-  return React__default.createElement(ThemeContext.Consumer, null, function (theme) {
+  return React.createElement(ThemeContext.Consumer, null, function (theme) {
     var hasRendered = false;
 
     var css = function css() {
@@ -1689,23 +1707,6 @@ var ClassNames = withEmotionCache(function (props, context) {
     return ele;
   });
 });
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var defineProperty = _defineProperty;
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -1990,19 +1991,19 @@ var createCacheWithTheme = weakMemoize(function (outerTheme) {
 });
 
 var ThemeProvider = function ThemeProvider(props) {
-  return React__default.createElement(ThemeContext.Consumer, null, function (theme) {
+  return React.createElement(ThemeContext.Consumer, null, function (theme) {
     if (props.theme !== theme) {
       theme = createCacheWithTheme(theme)(props.theme);
     }
 
-    return React__default.createElement(ThemeContext.Provider, {
+    return React.createElement(ThemeContext.Provider, {
       value: theme
     }, props.children);
   });
 };
 
 function useTheme() {
-  return React__default__default.useContext(ThemeContext);
+  return React__default.useContext(ThemeContext);
 }
 
 var Example = function Example(_ref) {
@@ -2011,30 +2012,86 @@ var Example = function Example(_ref) {
   var _useTheme = useTheme(),
       colors = _useTheme.colors;
 
-  return jsx("div", null, jsx("div", {
-    css: {
-      color: colors.secondary
-    }
-  }, "Test Test"), jsx("div", {
-    className: 'flex items-center justify-center pa4 bg-lightest-blue navy'
-  }, jsx("svg", {
+  var primaryStyles = emotion.css({
+    backgroundColor: colors.primary.P900,
+    color: colors.primary.P100
+  });
+  return React__default.createElement("div", null, React__default.createElement("div", {
+    className: emotion.cx(primaryStyles + " flex items-center justify-center pa4")
+  }, React__default.createElement("svg", {
     className: 'w1',
     "data-icon": 'info',
     viewBox: '0 0 32 32',
     style: {
       fill: 'currentcolor'
     }
-  }, jsx("title", null, "info icon"), jsx("path", {
+  }, React__default.createElement("title", null, "info icon"), React__default.createElement("path", {
     d: 'M16 0 A16 16 0 0 1 16 32 A16 16 0 0 1 16 0 M19 15 L13 15 L13 26 L19 26 z M16 6 A3 3 0 0 0 16 12 A3 3 0 0 0 16 6'
-  })), jsx("span", {
+  })), React__default.createElement("span", {
     className: 'lh-title ml3'
   }, children)));
 };
 
 var theme = {
   colors: {
-    primary: '#ff4136',
-    secondary: '#00449e'
+    primary: {
+      P100: '#003E6B',
+      P200: '#0A558C',
+      P300: '#0F609B',
+      P400: '#186FAF',
+      P500: '#2680C2',
+      P600: '#4098D7',
+      P700: '#62B0E8',
+      P800: '#84C5F4',
+      P900: '#B6E0FE',
+      P1000: '#DCEEFB'
+    },
+    secondary: {
+      S100: '#8D2B0B',
+      S200: '#B44D12',
+      S300: '#CB6E17',
+      S400: '#DE911D',
+      S500: '#F0B429',
+      S600: '#F7C948',
+      S700: '#FADB5F',
+      S800: '#FCE588',
+      S900: '#FFF3C4',
+      S1000: '#FFFBEA'
+    },
+    neutrals: {
+      N100: '#102A43',
+      N200: '#243B53',
+      N300: '#334E68',
+      N400: '#486581',
+      N500: '#627D98',
+      N600: '#829AB1',
+      N700: '#9FB3C8',
+      N800: '#BCCCDC',
+      N900: '#D9E2EC',
+      N1000: '#F0F4F8'
+    },
+    support: {
+      error: {
+        light: '#e57373',
+        main: '#f44336',
+        dark: '#d32f2f'
+      },
+      warning: {
+        light: '#ffb74d',
+        main: '#ff9800',
+        dark: '#f57c00'
+      },
+      info: {
+        light: '#64b5f6',
+        main: '#2196f3',
+        dark: '#1976d2'
+      },
+      success: {
+        light: '#81c784',
+        main: '#4caf50',
+        dark: '#388e3c'
+      }
+    }
   }
 };
 
@@ -2052,4 +2109,5 @@ ThemeProvider$1.defaultProps = {
 
 exports.Example = Example;
 exports.ThemeProvider = ThemeProvider$1;
+exports.theme = theme;
 //# sourceMappingURL=index.js.map
