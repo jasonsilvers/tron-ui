@@ -3,6 +3,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var emotion = require('emotion');
 var React = require('react');
 var React__default = _interopDefault(React);
+var fi = require('react-icons/fi');
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -2107,6 +2108,44 @@ ThemeProvider$1.defaultProps = {
   theme: theme
 };
 
+var Alert = function Alert(_ref) {
+  var _ref$type = _ref.type,
+      type = _ref$type === void 0 ? 'info' : _ref$type,
+      title = _ref.title,
+      subtitle = _ref.subtitle,
+      showIcon = _ref.showIcon;
+
+  var _useTheme = useTheme(),
+      colors = _useTheme.colors;
+
+  console.log(type);
+  var styles = emotion.css({
+    backgroundColor: colors.support[type].light,
+    border: '1px solid',
+    borderColor: colors.support[type].dark
+  });
+  return React__default.createElement("section", {
+    className: 'ph1 ph2-ns pv1'
+  }, React__default.createElement("article", {
+    className: emotion.cx(styles + " mw7 center br2")
+  }, React__default.createElement("div", {
+    className: 'cf ph2-ns flex items-center'
+  }, showIcon ? React__default.createElement("div", {
+    className: 'fl w-20 pa2'
+  }, React__default.createElement("div", {
+    className: 'flex justify-end'
+  }, React__default.createElement(fi.FiInfo, {
+    size: '40px'
+  }))) : null, React__default.createElement("div", {
+    className: 'fl w-80 pa2'
+  }, React__default.createElement("div", null, React__default.createElement("h2", {
+    className: 'fw4 mt0 mb1'
+  }, title), subtitle ? React__default.createElement("p", {
+    className: 'measure lh-copy mv0'
+  }, subtitle) : null)))));
+};
+
+exports.Alert = Alert;
 exports.Example = Example;
 exports.ThemeProvider = ThemeProvider$1;
 exports.theme = theme;

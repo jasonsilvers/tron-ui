@@ -1,5 +1,6 @@
 import { css, cx } from 'emotion';
 import React, { createContext, forwardRef, createElement } from 'react';
+import { FiInfo } from 'react-icons/fi';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -2105,5 +2106,41 @@ ThemeProvider$1.defaultProps = {
   theme
 };
 
-export { Example, ThemeProvider$1 as ThemeProvider, theme };
+const Alert = ({
+  type: _type = 'info',
+  title,
+  subtitle,
+  showIcon
+}) => {
+  const {
+    colors
+  } = useTheme();
+  console.log(_type);
+  const styles = css({
+    backgroundColor: colors.support[_type].light,
+    border: '1px solid',
+    borderColor: colors.support[_type].dark
+  });
+  return React.createElement("section", {
+    className: 'ph1 ph2-ns pv1'
+  }, React.createElement("article", {
+    className: cx(`${styles} mw7 center br2`)
+  }, React.createElement("div", {
+    className: 'cf ph2-ns flex items-center'
+  }, showIcon ? React.createElement("div", {
+    className: 'fl w-20 pa2'
+  }, React.createElement("div", {
+    className: 'flex justify-end'
+  }, React.createElement(FiInfo, {
+    size: '40px'
+  }))) : null, React.createElement("div", {
+    className: 'fl w-80 pa2'
+  }, React.createElement("div", null, React.createElement("h2", {
+    className: 'fw4 mt0 mb1'
+  }, title), subtitle ? React.createElement("p", {
+    className: 'measure lh-copy mv0'
+  }, subtitle) : null)))));
+};
+
+export { Alert, Example, ThemeProvider$1 as ThemeProvider, theme };
 //# sourceMappingURL=index.modern.js.map

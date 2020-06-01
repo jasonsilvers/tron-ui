@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import {ThemeProvider, Example } from 'tron-ui'
+import { ThemeProvider, Alert } from 'tron-ui'
 // import { theme } from "./theme";
 
 const App: React.FC = () => {
@@ -8,7 +8,7 @@ const App: React.FC = () => {
     // <ThemeProvider theme={theme}>
     <ThemeProvider>
       <div className='App'>
-        <Example> This is a banner</Example>
+        <Alert type='info' title="Warning" subtitle="There was an error" showIcon />
       </div>
     </ThemeProvider>
   )
