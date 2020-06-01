@@ -2108,6 +2108,21 @@ ThemeProvider$1.defaultProps = {
   theme: theme
 };
 
+var iconMap = {
+  info: React__default.createElement(fi.FiInfo, {
+    size: '40px'
+  }),
+  success: React__default.createElement(fi.FiCheckCircle, {
+    size: '40px'
+  }),
+  warning: React__default.createElement(fi.FiAlertCircle, {
+    size: '40px'
+  }),
+  error: React__default.createElement(fi.FiXCircle, {
+    size: '40px'
+  })
+};
+
 var Alert = function Alert(_ref) {
   var _ref$type = _ref.type,
       type = _ref$type === void 0 ? 'info' : _ref$type,
@@ -2134,9 +2149,7 @@ var Alert = function Alert(_ref) {
     className: 'fl w-20 pa2'
   }, React__default.createElement("div", {
     className: 'flex justify-end'
-  }, React__default.createElement(fi.FiInfo, {
-    size: '40px'
-  }))) : null, React__default.createElement("div", {
+  }, iconMap[type])) : null, React__default.createElement("div", {
     className: 'fl w-80 pa2'
   }, React__default.createElement("div", null, React__default.createElement("h2", {
     className: 'fw4 mt0 mb1'

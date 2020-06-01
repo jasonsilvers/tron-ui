@@ -8,7 +8,7 @@ const App: React.FC = () => {
     // <ThemeProvider theme={theme}>
     <ThemeProvider>
       <div className='App'>
-        <Alert type='info' title="Warning" subtitle="There was an error" showIcon />
+        <Alert type='error' title="Error" subtitle="There was an error" showIcon />
       </div>
     </ThemeProvider>
   )

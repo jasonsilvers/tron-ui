@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiInfo } from 'react-icons/fi'
+import { FiInfo, FiCheckCircle, FiAlertCircle, FiXCircle } from 'react-icons/fi'
 import { useTheme } from 'emotion-theming'
 import { cx, css } from 'emotion'
 
@@ -8,6 +8,13 @@ export interface AlertProps {
   showIcon?: boolean
   title: string
   subtitle?: string
+}
+
+const iconMap = {
+  info: <FiInfo size='40px' />,
+  success: <FiCheckCircle size='40px' />,
+  warning: <FiAlertCircle size='40px' />,
+  error: <FiXCircle size='40px' />
 }
 
 const Alert: React.FC<AlertProps> = ({
@@ -32,9 +39,7 @@ const Alert: React.FC<AlertProps> = ({
         <div className='cf ph2-ns flex items-center'>
           {showIcon ? (
             <div className='fl w-20 pa2'>
-              <div className='flex justify-end'>
-                <FiInfo size='40px' />
-              </div>
+              <div className='flex justify-end'>{iconMap[type]}</div>
             </div>
           ) : null}
           <div className='fl w-80 pa2'>

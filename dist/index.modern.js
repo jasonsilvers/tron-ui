@@ -1,6 +1,6 @@
 import { css, cx } from 'emotion';
 import React, { createContext, forwardRef, createElement } from 'react';
-import { FiInfo } from 'react-icons/fi';
+import { FiInfo, FiCheckCircle, FiAlertCircle, FiXCircle } from 'react-icons/fi';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -2106,6 +2106,21 @@ ThemeProvider$1.defaultProps = {
   theme
 };
 
+const iconMap = {
+  info: React.createElement(FiInfo, {
+    size: '40px'
+  }),
+  success: React.createElement(FiCheckCircle, {
+    size: '40px'
+  }),
+  warning: React.createElement(FiAlertCircle, {
+    size: '40px'
+  }),
+  error: React.createElement(FiXCircle, {
+    size: '40px'
+  })
+};
+
 const Alert = ({
   type: _type = 'info',
   title,
@@ -2131,9 +2146,7 @@ const Alert = ({
     className: 'fl w-20 pa2'
   }, React.createElement("div", {
     className: 'flex justify-end'
-  }, React.createElement(FiInfo, {
-    size: '40px'
-  }))) : null, React.createElement("div", {
+  }, iconMap[_type])) : null, React.createElement("div", {
     className: 'fl w-80 pa2'
   }, React.createElement("div", null, React.createElement("h2", {
     className: 'fw4 mt0 mb1'
