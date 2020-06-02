@@ -1,5 +1,5 @@
 import { css, cx } from 'emotion';
-import React, { createContext, forwardRef, createElement } from 'react';
+import React, { createContext, forwardRef, createElement, useState, useEffect, useContext } from 'react';
 import { FiInfo, FiCheckCircle, FiAlertCircle, FiXCircle } from 'react-icons/fi';
 
 function _defineProperty(obj, key, value) {
@@ -2108,16 +2108,16 @@ ThemeProvider$1.defaultProps = {
 
 const iconMap = {
   info: React.createElement(FiInfo, {
-    size: '40px'
+    size: '30px'
   }),
   success: React.createElement(FiCheckCircle, {
-    size: '40px'
+    size: '30px'
   }),
   warning: React.createElement(FiAlertCircle, {
-    size: '40px'
+    size: '30px'
   }),
   error: React.createElement(FiXCircle, {
-    size: '40px'
+    size: '30px'
   })
 };
 
@@ -2130,24 +2130,24 @@ const Alert = ({
   const {
     colors
   } = useTheme();
-  console.log(_type);
   const styles = css({
     backgroundColor: colors.support[_type].light,
     border: '1px solid',
+    borderLeft: '5px solid',
     borderColor: colors.support[_type].dark
   });
   return React.createElement("section", {
     className: 'ph1 ph2-ns pv1'
   }, React.createElement("article", {
-    className: cx(`${styles} mw7 center br2`)
+    className: cx(`${styles} mw7 center br2 overflow-hidden`)
   }, React.createElement("div", {
     className: 'cf ph2-ns flex items-center'
   }, showIcon ? React.createElement("div", {
-    className: 'fl w-20 pa2'
+    className: 'fl w-10 pa2'
   }, React.createElement("div", {
     className: 'flex justify-end'
   }, iconMap[_type])) : null, React.createElement("div", {
-    className: 'fl w-80 pa2'
+    className: 'fl w-90 pa2'
   }, React.createElement("div", null, React.createElement("h2", {
     className: 'fw4 mt0 mb1'
   }, title), subtitle ? React.createElement("p", {
@@ -2155,5 +2155,75 @@ const Alert = ({
   }, subtitle) : null)))));
 };
 
-export { Alert, Example, ThemeProvider$1 as ThemeProvider, theme };
+const queryList = {
+  ns: 'screen and (min-width: 30em)',
+  m: 'screen and (min-width: 30em) and (max-width: 60em)',
+  l: 'screen and (min-width: 60em)',
+  or: '(orientation: portrait)'
+};
+const defaultMatches = {};
+const BreakPointContext = createContext(defaultMatches);
+
+const BreakpointProvider = ({
+  children
+}) => {
+  const [queryMatch, setQueryMatch] = useState({});
+  useEffect(() => {
+    const mediaQueryLists = {};
+    const keys = Object.keys(queryList);
+    let isAttached = false;
+
+    const handleQueryListener = () => {
+      const updatedMatches = keys.reduce((acc, media) => {
+        acc[media] = !!(mediaQueryLists[media] && mediaQueryLists[media].matches);
+        return acc;
+      }, {});
+      setQueryMatch(updatedMatches);
+    };
+
+    if (window && window.matchMedia) {
+      const matches = {};
+      keys.forEach(media => {
+        if (typeof queryList[media] === 'string') {
+          mediaQueryLists[media] = window.matchMedia(queryList[media]);
+          matches[media] = mediaQueryLists[media].matches;
+        } else {
+          matches[media] = false;
+        }
+      });
+      setQueryMatch(matches);
+      isAttached = true;
+      keys.forEach(media => {
+        if (typeof queryList[media] === 'string') {
+          mediaQueryLists[media].addListener(handleQueryListener);
+        }
+      });
+    }
+
+    return () => {
+      if (isAttached) {
+        keys.forEach(media => {
+          if (typeof queryList[media] === 'string') {
+            mediaQueryLists[media].removeListener(handleQueryListener);
+          }
+        });
+      }
+    };
+  }, []);
+  return React.createElement(BreakPointContext.Provider, {
+    value: queryMatch
+  }, children);
+};
+
+function useBreakPoint() {
+  const context = useContext(BreakPointContext);
+
+  if (context === defaultMatches) {
+    throw new Error('useBreakpoint must be used within Breakpoint Provider');
+  }
+
+  return context;
+}
+
+export { Alert, BreakpointProvider, Example, ThemeProvider$1 as ThemeProvider, theme, useBreakPoint };
 //# sourceMappingURL=index.modern.js.map

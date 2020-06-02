@@ -2110,16 +2110,16 @@ ThemeProvider$1.defaultProps = {
 
 var iconMap = {
   info: React__default.createElement(fi.FiInfo, {
-    size: '40px'
+    size: '30px'
   }),
   success: React__default.createElement(fi.FiCheckCircle, {
-    size: '40px'
+    size: '30px'
   }),
   warning: React__default.createElement(fi.FiAlertCircle, {
-    size: '40px'
+    size: '30px'
   }),
   error: React__default.createElement(fi.FiXCircle, {
-    size: '40px'
+    size: '30px'
   })
 };
 
@@ -2133,24 +2133,24 @@ var Alert = function Alert(_ref) {
   var _useTheme = useTheme(),
       colors = _useTheme.colors;
 
-  console.log(type);
   var styles = emotion.css({
     backgroundColor: colors.support[type].light,
     border: '1px solid',
+    borderLeft: '5px solid',
     borderColor: colors.support[type].dark
   });
   return React__default.createElement("section", {
     className: 'ph1 ph2-ns pv1'
   }, React__default.createElement("article", {
-    className: emotion.cx(styles + " mw7 center br2")
+    className: emotion.cx(styles + " mw7 center br2 overflow-hidden")
   }, React__default.createElement("div", {
     className: 'cf ph2-ns flex items-center'
   }, showIcon ? React__default.createElement("div", {
-    className: 'fl w-20 pa2'
+    className: 'fl w-10 pa2'
   }, React__default.createElement("div", {
     className: 'flex justify-end'
   }, iconMap[type])) : null, React__default.createElement("div", {
-    className: 'fl w-80 pa2'
+    className: 'fl w-90 pa2'
   }, React__default.createElement("div", null, React__default.createElement("h2", {
     className: 'fw4 mt0 mb1'
   }, title), subtitle ? React__default.createElement("p", {
@@ -2158,8 +2158,83 @@ var Alert = function Alert(_ref) {
   }, subtitle) : null)))));
 };
 
+var queryList = {
+  ns: 'screen and (min-width: 30em)',
+  m: 'screen and (min-width: 30em) and (max-width: 60em)',
+  l: 'screen and (min-width: 60em)',
+  or: '(orientation: portrait)'
+};
+var defaultMatches = {};
+var BreakPointContext = React.createContext(defaultMatches);
+
+var BreakpointProvider = function BreakpointProvider(_ref) {
+  var children = _ref.children;
+
+  var _useState = React.useState({}),
+      queryMatch = _useState[0],
+      setQueryMatch = _useState[1];
+
+  React.useEffect(function () {
+    var mediaQueryLists = {};
+    var keys = Object.keys(queryList);
+    var isAttached = false;
+
+    var handleQueryListener = function handleQueryListener() {
+      var updatedMatches = keys.reduce(function (acc, media) {
+        acc[media] = !!(mediaQueryLists[media] && mediaQueryLists[media].matches);
+        return acc;
+      }, {});
+      setQueryMatch(updatedMatches);
+    };
+
+    if (window && window.matchMedia) {
+      var matches = {};
+      keys.forEach(function (media) {
+        if (typeof queryList[media] === 'string') {
+          mediaQueryLists[media] = window.matchMedia(queryList[media]);
+          matches[media] = mediaQueryLists[media].matches;
+        } else {
+          matches[media] = false;
+        }
+      });
+      setQueryMatch(matches);
+      isAttached = true;
+      keys.forEach(function (media) {
+        if (typeof queryList[media] === 'string') {
+          mediaQueryLists[media].addListener(handleQueryListener);
+        }
+      });
+    }
+
+    return function () {
+      if (isAttached) {
+        keys.forEach(function (media) {
+          if (typeof queryList[media] === 'string') {
+            mediaQueryLists[media].removeListener(handleQueryListener);
+          }
+        });
+      }
+    };
+  }, []);
+  return React__default.createElement(BreakPointContext.Provider, {
+    value: queryMatch
+  }, children);
+};
+
+function useBreakPoint() {
+  var context = React.useContext(BreakPointContext);
+
+  if (context === defaultMatches) {
+    throw new Error('useBreakpoint must be used within Breakpoint Provider');
+  }
+
+  return context;
+}
+
 exports.Alert = Alert;
+exports.BreakpointProvider = BreakpointProvider;
 exports.Example = Example;
 exports.ThemeProvider = ThemeProvider$1;
 exports.theme = theme;
+exports.useBreakPoint = useBreakPoint;
 //# sourceMappingURL=index.js.map

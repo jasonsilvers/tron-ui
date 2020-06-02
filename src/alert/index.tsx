@@ -11,10 +11,10 @@ export interface AlertProps {
 }
 
 const iconMap = {
-  info: <FiInfo size='40px' />,
-  success: <FiCheckCircle size='40px' />,
-  warning: <FiAlertCircle size='40px' />,
-  error: <FiXCircle size='40px' />
+  info: <FiInfo size='30px' />,
+  success: <FiCheckCircle size='30px' />,
+  warning: <FiAlertCircle size='30px' />,
+  error: <FiXCircle size='30px' />
 }
 
 const Alert: React.FC<AlertProps> = ({
@@ -25,24 +25,23 @@ const Alert: React.FC<AlertProps> = ({
 }) => {
   const { colors } = useTheme()
 
-  console.log(type)
-
   const styles = css({
     backgroundColor: colors.support[type].light,
     border: '1px solid',
+    borderLeft: '5px solid',
     borderColor: colors.support[type].dark
   })
 
   return (
     <section className='ph1 ph2-ns pv1'>
-      <article className={cx(`${styles} mw7 center br2`)}>
+      <article className={cx(`${styles} mw7 center br2 overflow-hidden`)}>
         <div className='cf ph2-ns flex items-center'>
           {showIcon ? (
-            <div className='fl w-20 pa2'>
+            <div className='fl w-10 pa2'>
               <div className='flex justify-end'>{iconMap[type]}</div>
             </div>
           ) : null}
-          <div className='fl w-80 pa2'>
+          <div className='fl w-90 pa2'>
             <div>
               <h2 className='fw4 mt0 mb1'>{title}</h2>
               {subtitle ? (
