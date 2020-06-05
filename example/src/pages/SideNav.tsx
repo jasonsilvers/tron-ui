@@ -25,7 +25,7 @@ const SideNav: React.FC = () => {
     >
       <div className='nowra br b--light-gray w-100'>
         <NavLink
-          to='/start'
+          to='/'
           activeClassName={cx(`${bgThemeStyle} br3`)}
           className={linkClass}
         >
