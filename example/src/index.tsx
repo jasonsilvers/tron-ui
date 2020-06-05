@@ -8,7 +8,7 @@ import { BreakpointProvider } from 'tron-ui'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename='tron-ui'>
       <BreakpointProvider>
         <App />
       </BreakpointProvider>
