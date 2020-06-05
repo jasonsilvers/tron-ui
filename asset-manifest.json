@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/tron-ui/static/css/main.474be8e5.chunk.css",
-    "main.js": "/tron-ui/static/js/main.471aebe7.chunk.js",
-    "main.js.map": "/tron-ui/static/js/main.471aebe7.chunk.js.map",
+    "main.js": "/tron-ui/static/js/main.e3184c2d.chunk.js",
+    "main.js.map": "/tron-ui/static/js/main.e3184c2d.chunk.js.map",
     "runtime-main.js": "/tron-ui/static/js/runtime-main.0e67ac03.js",
     "runtime-main.js.map": "/tron-ui/static/js/runtime-main.0e67ac03.js.map",
     "static/js/2.a03fb590.chunk.js": "/tron-ui/static/js/2.a03fb590.chunk.js",
     "static/js/2.a03fb590.chunk.js.map": "/tron-ui/static/js/2.a03fb590.chunk.js.map",
     "index.html": "/tron-ui/index.html",
-    "precache-manifest.ddbe1d617b9dfe665383b4d4fcadd86f.js": "/tron-ui/precache-manifest.ddbe1d617b9dfe665383b4d4fcadd86f.js",
+    "precache-manifest.e2bc4d34388b05cde8a0dc3a6f7321d4.js": "/tron-ui/precache-manifest.e2bc4d34388b05cde8a0dc3a6f7321d4.js",
     "service-worker.js": "/tron-ui/service-worker.js",
     "static/css/main.474be8e5.chunk.css.map": "/tron-ui/static/css/main.474be8e5.chunk.css.map",
     "static/js/2.a03fb590.chunk.js.LICENSE.txt": "/tron-ui/static/js/2.a03fb590.chunk.js.LICENSE.txt",
-    "static/js/main.471aebe7.chunk.js.LICENSE.txt": "/tron-ui/static/js/main.471aebe7.chunk.js.LICENSE.txt"
+    "static/js/main.e3184c2d.chunk.js.LICENSE.txt": "/tron-ui/static/js/main.e3184c2d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0e67ac03.js",
     "static/js/2.a03fb590.chunk.js",
     "static/css/main.474be8e5.chunk.css",
-    "static/js/main.471aebe7.chunk.js"
+    "static/js/main.e3184c2d.chunk.js"
   ]
 }
