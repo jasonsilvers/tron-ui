@@ -109,7 +109,7 @@ const Start: React.FC<Props> = () => {
       <h1 className='f3 lh-copy'>Getting Started</h1>
 
       <h2 className='f4 fw3 lh-copy'>
-        Tron-Ui is a Typscript UI component library based on{' '}
+        Tron-Ui is a React UI component library based on{' '}
         <a href='https://tachyons.io/' className='link fw4'>
           Tachyons CSS
         </a>
