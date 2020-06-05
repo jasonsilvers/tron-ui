@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fde04d4c2df92d133025669c8601fea7",
+    "revision": "f1ef78c5a1ee41f2ac4e0cebf64added",
     "url": "/tron-ui/index.html"
   },
   {
-    "revision": "79541ab923bb7c18758d",
+    "revision": "0a6c7487257578a7ec62",
     "url": "/tron-ui/static/css/main.474be8e5.chunk.css"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tron-ui/static/js/2.6718ffa1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "79541ab923bb7c18758d",
-    "url": "/tron-ui/static/js/main.e5b39e4b.chunk.js"
+    "revision": "0a6c7487257578a7ec62",
+    "url": "/tron-ui/static/js/main.a9710be3.chunk.js"
   },
   {
     "revision": "6fce53c7c7713ebf61712cc2929746fa",
-    "url": "/tron-ui/static/js/main.e5b39e4b.chunk.js.LICENSE.txt"
+    "url": "/tron-ui/static/js/main.a9710be3.chunk.js.LICENSE.txt"
   },
   {
     "revision": "63cb0022bd9fe5321365",
