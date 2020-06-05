@@ -157,7 +157,7 @@ const ButtonPage: React.FC = () => {
           </div>
           <div>
             <span className='f4 db black-70'>
-              'basic' | 'primary' | 'Secondary' | 'Neutral'
+              'basic' | 'primary' | 'secondary' | 'neutral'
             </span>
           </div>
         </li>
