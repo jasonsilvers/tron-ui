@@ -2325,14 +2325,14 @@ var basicStyling = function basicStyling(theme, color, isDisabled) {
   }
 
   if (color === 'basic') {
-    return "bg-white hover-moon-gray bn";
+    return "bg-white bn pointer";
   }
 
   var styles = generateCSS({
     backgroundColor: 'white',
     color: theme.colors[color][100]
   });
-  return styles + " dim link bn pointer";
+  return styles + " link bn pointer hover-moon-gray";
 };
 
 var raisedStyling = function raisedStyling(theme, color, isDisabled) {
@@ -2341,14 +2341,14 @@ var raisedStyling = function raisedStyling(theme, color, isDisabled) {
   }
 
   if (color === 'basic') {
-    return "bg-white hover-moon-gray shadow-4 bn pointer";
+    return "bg-white shadow-4 bn pointer";
   }
 
   var styles = generateCSS({
     color: 'white',
     backgroundColor: theme.colors[color][100]
   });
-  return styles + " dim link shadow-4 bn pointer";
+  return styles + " dim link shadow-4 bn hover-moon-gray pointer";
 };
 
 var strokedStyling = function strokedStyling(theme, color, isDisabled) {

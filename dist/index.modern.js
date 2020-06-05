@@ -2005,18 +2005,18 @@ function useTheme() {
   return React.useContext(ThemeContext);
 }
 
-var Example = function Example(_ref) {
-  var children = _ref.children;
-
-  var _useTheme = useTheme(),
-      colors = _useTheme.colors;
-
-  var primaryStyles = css({
+const Example = ({
+  children
+}) => {
+  const {
+    colors
+  } = useTheme();
+  const primaryStyles = css({
     backgroundColor: colors.primary.P900,
     color: colors.primary.P100
   });
   return React.createElement("div", null, React.createElement("div", {
-    className: cx(primaryStyles + " flex items-center justify-center pa4")
+    className: cx(`${primaryStyles} flex items-center justify-center pa4`)
   }, React.createElement("svg", {
     className: 'w1',
     "data-icon": 'info',
@@ -2031,7 +2031,7 @@ var Example = function Example(_ref) {
   }, children)));
 };
 
-var theme = {
+const theme = {
   colors: {
     primary: {
       100: '#003E6B',
@@ -2094,9 +2094,10 @@ var theme = {
   }
 };
 
-var ThemeProvider$1 = function ThemeProvider$1(_ref) {
-  var theme = _ref.theme,
-      children = _ref.children;
+const ThemeProvider$1 = ({
+  theme,
+  children
+}) => {
   theme.colors.support.info.light = theme.colors.primary[900];
   theme.colors.support.info.main = theme.colors.primary[500];
   theme.colors.support.info.dark = theme.colors.primary[200];
@@ -2106,14 +2107,14 @@ var ThemeProvider$1 = function ThemeProvider$1(_ref) {
 };
 
 ThemeProvider$1.defaultProps = {
-  theme: theme
+  theme
 };
 
 function useTronTheme() {
   return useTheme();
 }
 
-var iconMap = {
+const iconMap = {
   info: React.createElement(FiInfo, {
     size: '25px'
   }),
@@ -2128,33 +2129,32 @@ var iconMap = {
   })
 };
 
-var Alert = function Alert(_ref) {
-  var _ref$type = _ref.type,
-      type = _ref$type === void 0 ? 'info' : _ref$type,
-      title = _ref.title,
-      subtitle = _ref.subtitle,
-      showIcon = _ref.showIcon;
-
-  var _useTheme = useTheme(),
-      colors = _useTheme.colors;
-
-  var styles = css({
-    backgroundColor: colors.support[type].light,
+const Alert = ({
+  type: _type = 'info',
+  title,
+  subtitle,
+  showIcon
+}) => {
+  const {
+    colors
+  } = useTheme();
+  const styles = css({
+    backgroundColor: colors.support[_type].light,
     border: '1px solid',
     borderLeft: '5px solid',
-    borderColor: colors.support[type].dark
+    borderColor: colors.support[_type].dark
   });
   return React.createElement("section", {
     className: 'ph1 ph2-ns pv1'
   }, React.createElement("article", {
-    className: cx(styles + " mw7 center br2 overflow-hidden")
+    className: cx(`${styles} mw7 center br2 overflow-hidden`)
   }, React.createElement("div", {
     className: 'cf ph2-ns flex items-center'
   }, showIcon ? React.createElement("div", {
     className: 'fl w-10 pa2'
   }, React.createElement("div", {
     className: 'flex justify-end'
-  }, iconMap[type])) : null, React.createElement("div", {
+  }, iconMap[_type])) : null, React.createElement("div", {
     className: 'fl w-90 pa2'
   }, React.createElement("div", null, React.createElement("h2", {
     className: 'fw4 f4 mt0 mb1'
@@ -2163,29 +2163,26 @@ var Alert = function Alert(_ref) {
   }, subtitle) : null)))));
 };
 
-var queryList = {
+const queryList = {
   ns: 'screen and (min-width: 30em)',
   m: 'screen and (min-width: 30em) and (max-width: 60em)',
   l: 'screen and (min-width: 60em)',
   or: '(orientation: portrait)'
 };
-var defaultMatches = {};
-var BreakPointContext = createContext(defaultMatches);
+const defaultMatches = {};
+const BreakPointContext = createContext(defaultMatches);
 
-var BreakpointProvider = function BreakpointProvider(_ref) {
-  var children = _ref.children;
+const BreakpointProvider = ({
+  children
+}) => {
+  const [queryMatch, setQueryMatch] = useState({});
+  useEffect(() => {
+    const mediaQueryLists = {};
+    const keys = Object.keys(queryList);
+    let isAttached = false;
 
-  var _useState = useState({}),
-      queryMatch = _useState[0],
-      setQueryMatch = _useState[1];
-
-  useEffect(function () {
-    var mediaQueryLists = {};
-    var keys = Object.keys(queryList);
-    var isAttached = false;
-
-    var handleQueryListener = function handleQueryListener() {
-      var updatedMatches = keys.reduce(function (acc, media) {
+    const handleQueryListener = () => {
+      const updatedMatches = keys.reduce((acc, media) => {
         acc[media] = !!(mediaQueryLists[media] && mediaQueryLists[media].matches);
         return acc;
       }, {});
@@ -2193,8 +2190,8 @@ var BreakpointProvider = function BreakpointProvider(_ref) {
     };
 
     if (window && window.matchMedia) {
-      var matches = {};
-      keys.forEach(function (media) {
+      const matches = {};
+      keys.forEach(media => {
         if (typeof queryList[media] === 'string') {
           mediaQueryLists[media] = window.matchMedia(queryList[media]);
           matches[media] = mediaQueryLists[media].matches;
@@ -2204,16 +2201,16 @@ var BreakpointProvider = function BreakpointProvider(_ref) {
       });
       setQueryMatch(matches);
       isAttached = true;
-      keys.forEach(function (media) {
+      keys.forEach(media => {
         if (typeof queryList[media] === 'string') {
           mediaQueryLists[media].addListener(handleQueryListener);
         }
       });
     }
 
-    return function () {
+    return () => {
       if (isAttached) {
-        keys.forEach(function (media) {
+        keys.forEach(media => {
           if (typeof queryList[media] === 'string') {
             mediaQueryLists[media].removeListener(handleQueryListener);
           }
@@ -2227,7 +2224,7 @@ var BreakpointProvider = function BreakpointProvider(_ref) {
 };
 
 function useBreakPoint() {
-  var context = useContext(BreakPointContext);
+  const context = useContext(BreakPointContext);
 
   if (context === defaultMatches) {
     throw new Error('useBreakpoint must be used within Breakpoint Provider');
@@ -2236,30 +2233,28 @@ function useBreakPoint() {
   return context;
 }
 
-var useModal = function useModal() {
-  var _useState = useState(false),
-      isOpen = _useState[0],
-      setIsOpen = _useState[1];
-
-  var toggle = useCallback(function () {
+const useModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = useCallback(() => {
     setIsOpen(!isOpen);
   }, [setIsOpen, isOpen]);
-  useEffect(function () {
-    return function () {
+  useEffect(() => {
+    return () => {
       toggle();
     };
   }, [toggle]);
   return {
-    isOpen: isOpen,
-    toggle: toggle
+    isOpen,
+    toggle
   };
 };
 
-var Modal = function Modal(_ref) {
-  var isShowing = _ref.isShowing,
-      hide = _ref.hide,
-      children = _ref.children;
-  var overLayRef = useRef(null);
+const Modal = ({
+  isShowing,
+  hide,
+  children
+}) => {
+  const overLayRef = useRef(null);
 
   function handleOverlayClicked(e) {
     if (e.target !== e.currentTarget) {
@@ -2295,92 +2290,77 @@ var Modal = function Modal(_ref) {
   }, children)))), document.body) : null;
 };
 
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-var generateCSS = function generateCSS(styles) {
+const generateCSS = styles => {
   return cx(css(styles));
 };
 
-var baseClasses = "inline-flex ph3 lh-copy fw4 dib f5 pv2 br2 input-reset items-center justify-center relative outline:0 v-mid";
+const baseClasses = `inline-flex ph3 lh-copy fw4 dib f5 pv2 br2 input-reset items-center justify-center relative outline:0 v-mid`;
 
-var basicStyling = function basicStyling(theme, color, isDisabled) {
+const basicStyling = (theme, color, isDisabled) => {
   if (isDisabled) {
-    return "bg-white bn";
+    return `bg-white bn`;
   }
 
   if (color === 'basic') {
-    return "bg-white hover-moon-gray bn";
+    return `bg-white bn pointer`;
   }
 
-  var styles = generateCSS({
+  const styles = generateCSS({
     backgroundColor: 'white',
     color: theme.colors[color][100]
   });
-  return styles + " dim link bn pointer";
+  return `${styles} link bn pointer hover-moon-gray`;
 };
 
-var raisedStyling = function raisedStyling(theme, color, isDisabled) {
+const raisedStyling = (theme, color, isDisabled) => {
   if (isDisabled) {
-    return "bg-moon-gray bn";
+    return `bg-moon-gray bn`;
   }
 
   if (color === 'basic') {
-    return "bg-white hover-moon-gray shadow-4 bn pointer";
+    return `bg-white shadow-4 bn pointer`;
   }
 
-  var styles = generateCSS({
+  const styles = generateCSS({
     color: 'white',
     backgroundColor: theme.colors[color][100]
   });
-  return styles + " dim link shadow-4 bn pointer";
+  return `${styles} dim link shadow-4 bn hover-moon-gray pointer`;
 };
 
-var strokedStyling = function strokedStyling(theme, color, isDisabled) {
+const strokedStyling = (theme, color, isDisabled) => {
   if (isDisabled) {
-    return "bg-white ba b--moon-gray";
+    return `bg-white ba b--moon-gray`;
   }
 
   if (color === 'basic') {
-    return "bg-white ba b--moon-gray pointer";
+    return `bg-white ba b--moon-gray pointer`;
   }
 
-  var styles = generateCSS({
+  const styles = generateCSS({
     backgroundColor: 'white',
     color: theme.colors[color][100]
   });
-  return styles + " dim link pointer ba b--moon-gray";
+  return `${styles} dim link pointer ba b--moon-gray`;
 };
 
-var solidStyling = function solidStyling(theme, color, isDisabled) {
+const solidStyling = (theme, color, isDisabled) => {
   if (isDisabled) {
-    return "bg-moon-gray bn";
+    return `bg-moon-gray bn`;
   }
 
   if (color === 'basic') {
-    return "bg-white bn pointer";
+    return `bg-white bn pointer`;
   }
 
-  var styles = generateCSS({
+  const styles = generateCSS({
     color: 'white',
     backgroundColor: theme.colors[color][100]
   });
-  return styles + " dim link bn pointer";
+  return `${styles} dim link bn pointer`;
 };
 
-var buttonTypes = function buttonTypes(type, theme, color, isDisabled) {
+const buttonTypes = (type, theme, color, isDisabled) => {
   switch (type) {
     case 'basic':
       return basicStyling(theme, color, isDisabled);
@@ -2399,38 +2379,24 @@ var buttonTypes = function buttonTypes(type, theme, color, isDisabled) {
   }
 };
 
-var useButtonStyle = function useButtonStyle(color, type, isDisabled) {
-  if (color === void 0) {
-    color = 'basic';
-  }
-
-  if (type === void 0) {
-    type = 'basic';
-  }
-
-  if (isDisabled === void 0) {
-    isDisabled = false;
-  }
-
+const useButtonStyle = (color = 'basic', type = 'basic', isDisabled = false) => {
   console.log('in use style', color);
-  var theme = useTheme();
-  var buttonClasses = buttonTypes(type, theme, color, isDisabled);
-  return baseClasses + " " + buttonClasses;
+  const theme = useTheme();
+  const buttonClasses = buttonTypes(type, theme, color, isDisabled);
+  return `${baseClasses} ${buttonClasses}`;
 };
 
-var Button = function Button(_ref) {
-  var _ref$type = _ref.type,
-      type = _ref$type === void 0 ? 'basic' : _ref$type,
-      _ref$color = _ref.color,
-      color = _ref$color === void 0 ? 'basic' : _ref$color,
-      ariaLabel = _ref.ariaLabel,
-      isDisabled = _ref.isDisabled,
-      onClick = _ref.onClick,
-      children = _ref.children,
-      rest = _objectWithoutPropertiesLoose(_ref, ["type", "color", "ariaLabel", "isDisabled", "onClick", "children"]);
-
-  console.log('in the button', color);
-  var buttonClass = useButtonStyle(color, type, isDisabled);
+const Button = ({
+  type: _type = 'basic',
+  color: _color = 'basic',
+  ariaLabel,
+  isDisabled,
+  onClick,
+  children,
+  ...rest
+}) => {
+  console.log('in the button', _color);
+  const buttonClass = useButtonStyle(_color, _type, isDisabled);
   return React.createElement("button", Object.assign({
     type: 'button',
     onClick: onClick,

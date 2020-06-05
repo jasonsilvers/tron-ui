@@ -24,7 +24,7 @@ const basicStyling = (
   }
   // Basic Basic
   if (color === 'basic') {
-    return `bg-white hover-moon-gray bn`
+    return `bg-white bn pointer`
   }
 
   // Basic with theme color
@@ -33,7 +33,7 @@ const basicStyling = (
     color: theme.colors[color][100]
   })
 
-  return `${styles} dim link bn pointer`
+  return `${styles} link bn pointer hover-moon-gray`
 }
 
 const raisedStyling = (
@@ -46,7 +46,7 @@ const raisedStyling = (
   }
   // Basic Basic
   if (color === 'basic') {
-    return `bg-white hover-moon-gray shadow-4 bn pointer`
+    return `bg-white shadow-4 bn pointer`
   }
 
   // Basic with theme color
@@ -55,7 +55,7 @@ const raisedStyling = (
     backgroundColor: theme.colors[color][100]
   })
 
-  return `${styles} dim link shadow-4 bn pointer`
+  return `${styles} dim link shadow-4 bn hover-moon-gray pointer`
 }
 
 const strokedStyling = (
