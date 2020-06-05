@@ -43,7 +43,7 @@ const ButtonPage: React.FC = () => {
           </div>
           <div className='flex flex-column'>
             <div className='pa2'>
-              <Button color='primary'>Raised</Button>
+              <Button color='primary'>Basic</Button>
             </div>
             <div className='pa2'>
               <Button color='primary' type='raised'>
