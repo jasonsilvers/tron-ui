@@ -11,10 +11,10 @@ export interface AlertProps {
 }
 
 const iconMap = {
-  info: <FiInfo size='30px' />,
-  success: <FiCheckCircle size='30px' />,
-  warning: <FiAlertCircle size='30px' />,
-  error: <FiXCircle size='30px' />
+  info: <FiInfo size='25px' />,
+  success: <FiCheckCircle size='25px' />,
+  warning: <FiAlertCircle size='25px' />,
+  error: <FiXCircle size='25px' />
 }
 
 const Alert: React.FC<AlertProps> = ({
@@ -43,7 +43,7 @@ const Alert: React.FC<AlertProps> = ({
           ) : null}
           <div className='fl w-90 pa2'>
             <div>
-              <h2 className='fw4 mt0 mb1'>{title}</h2>
+              <h2 className='fw4 f4 mt0 mb1'>{title}</h2>
               {subtitle ? (
                 <p className='measure lh-copy mv0'>{subtitle}</p>
               ) : null}

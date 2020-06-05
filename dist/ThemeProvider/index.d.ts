@@ -10,4 +10,5 @@ declare const ThemeProvider: {
         theme: MyTheme;
     };
 };
-export default ThemeProvider;
+declare function useTronTheme(): MyTheme;
+export { ThemeProvider, useTronTheme };

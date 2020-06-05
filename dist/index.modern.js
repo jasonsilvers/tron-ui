@@ -1,6 +1,7 @@
 import { css, cx } from 'emotion';
-import React, { createContext, forwardRef, createElement, useState, useEffect, useContext } from 'react';
-import { FiInfo, FiCheckCircle, FiAlertCircle, FiXCircle } from 'react-icons/fi';
+import React, { createContext, forwardRef, createElement, useState, useEffect, useContext, useCallback, useRef } from 'react';
+import { FiInfo, FiCheckCircle, FiAlertCircle, FiXCircle, FiX } from 'react-icons/fi';
+import ReactDOM from 'react-dom';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -2033,40 +2034,40 @@ const Example = ({
 const theme = {
   colors: {
     primary: {
-      P100: '#003E6B',
-      P200: '#0A558C',
-      P300: '#0F609B',
-      P400: '#186FAF',
-      P500: '#2680C2',
-      P600: '#4098D7',
-      P700: '#62B0E8',
-      P800: '#84C5F4',
-      P900: '#B6E0FE',
-      P1000: '#DCEEFB'
+      100: '#003E6B',
+      200: '#0A558C',
+      300: '#0F609B',
+      400: '#186FAF',
+      500: '#2680C2',
+      600: '#4098D7',
+      700: '#62B0E8',
+      800: '#84C5F4',
+      900: '#B6E0FE',
+      1000: '#DCEEFB'
     },
     secondary: {
-      S100: '#8D2B0B',
-      S200: '#B44D12',
-      S300: '#CB6E17',
-      S400: '#DE911D',
-      S500: '#F0B429',
-      S600: '#F7C948',
-      S700: '#FADB5F',
-      S800: '#FCE588',
-      S900: '#FFF3C4',
-      S1000: '#FFFBEA'
+      100: '#8D2B0B',
+      200: '#B44D12',
+      300: '#CB6E17',
+      400: '#DE911D',
+      500: '#F0B429',
+      600: '#F7C948',
+      700: '#FADB5F',
+      800: '#FCE588',
+      900: '#FFF3C4',
+      1000: '#FFFBEA'
     },
-    neutrals: {
-      N100: '#102A43',
-      N200: '#243B53',
-      N300: '#334E68',
-      N400: '#486581',
-      N500: '#627D98',
-      N600: '#829AB1',
-      N700: '#9FB3C8',
-      N800: '#BCCCDC',
-      N900: '#D9E2EC',
-      N1000: '#F0F4F8'
+    neutral: {
+      100: '#102A43',
+      200: '#243B53',
+      300: '#334E68',
+      400: '#486581',
+      500: '#627D98',
+      600: '#829AB1',
+      700: '#9FB3C8',
+      800: '#BCCCDC',
+      900: '#D9E2EC',
+      1000: '#F0F4F8'
     },
     support: {
       error: {
@@ -2080,9 +2081,9 @@ const theme = {
         dark: '#f57c00'
       },
       info: {
-        light: '#64b5f6',
-        main: '#2196f3',
-        dark: '#1976d2'
+        light: '',
+        main: '',
+        dark: ''
       },
       success: {
         light: '#81c784',
@@ -2097,6 +2098,9 @@ const ThemeProvider$1 = ({
   theme,
   children
 }) => {
+  theme.colors.support.info.light = theme.colors.primary[900];
+  theme.colors.support.info.main = theme.colors.primary[500];
+  theme.colors.support.info.dark = theme.colors.primary[200];
   return jsx(ThemeProvider, {
     theme: theme
   }, children);
@@ -2106,18 +2110,22 @@ ThemeProvider$1.defaultProps = {
   theme
 };
 
+function useTronTheme() {
+  return useTheme();
+}
+
 const iconMap = {
   info: React.createElement(FiInfo, {
-    size: '30px'
+    size: '25px'
   }),
   success: React.createElement(FiCheckCircle, {
-    size: '30px'
+    size: '25px'
   }),
   warning: React.createElement(FiAlertCircle, {
-    size: '30px'
+    size: '25px'
   }),
   error: React.createElement(FiXCircle, {
-    size: '30px'
+    size: '25px'
   })
 };
 
@@ -2149,7 +2157,7 @@ const Alert = ({
   }, iconMap[_type])) : null, React.createElement("div", {
     className: 'fl w-90 pa2'
   }, React.createElement("div", null, React.createElement("h2", {
-    className: 'fw4 mt0 mb1'
+    className: 'fw4 f4 mt0 mb1'
   }, title), subtitle ? React.createElement("p", {
     className: 'measure lh-copy mv0'
   }, subtitle) : null)))));
@@ -2225,5 +2233,178 @@ function useBreakPoint() {
   return context;
 }
 
-export { Alert, BreakpointProvider, Example, ThemeProvider$1 as ThemeProvider, theme, useBreakPoint };
+const useModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [setIsOpen, isOpen]);
+  useEffect(() => {
+    return () => {
+      toggle();
+    };
+  }, [toggle]);
+  return {
+    isOpen,
+    toggle
+  };
+};
+
+const Modal = ({
+  isShowing,
+  hide,
+  children
+}) => {
+  const overLayRef = useRef(null);
+
+  function handleOverlayClicked(e) {
+    if (e.target !== e.currentTarget) {
+      return;
+    } else {
+      hide();
+    }
+  }
+
+  return isShowing ? ReactDOM.createPortal(React.createElement(React.Fragment, null, React.createElement("div", {
+    ref: overLayRef,
+    className: 'fixed top-0 left-0 z-999 w-100 h-100 bg-mid-gray o-50'
+  }), React.createElement("div", {
+    className: 'fixed pa2 top-0 left-0 z-9999 w-100 h-100 overflow-x-hidden overflow-y-auto outline-0',
+    "aria-modal": true,
+    "aria-hidden": true,
+    tabIndex: -1,
+    role: 'dialog',
+    onClick: handleOverlayClicked
+  }, React.createElement("div", {
+    className: 'mt6 z-5 bg-white relative center br2 mw6 pa2 shadow-3'
+  }, React.createElement("div", {
+    id: 'modal-header',
+    className: 'flex'
+  }, React.createElement("button", {
+    onClick: hide,
+    type: 'button',
+    className: 'bg-white bn pointer absolute top-1 right-1 dim'
+  }, React.createElement(FiX, {
+    size: '25px'
+  }))), React.createElement("div", {
+    className: 'ph2'
+  }, children)))), document.body) : null;
+};
+
+const generateCSS = styles => {
+  return cx(css(styles));
+};
+
+const baseClasses = `inline-flex ph3 lh-copy fw4 dib f5 pv2 br2 input-reset items-center justify-center relative outline:0 v-mid`;
+
+const basicStyling = (theme, color, isDisabled) => {
+  if (isDisabled) {
+    return `bg-white bn`;
+  }
+
+  if (color === 'basic') {
+    return `bg-white hover-moon-gray bn`;
+  }
+
+  const styles = generateCSS({
+    backgroundColor: 'white',
+    color: theme.colors[color][100]
+  });
+  return `${styles} dim link bn pointer`;
+};
+
+const raisedStyling = (theme, color, isDisabled) => {
+  if (isDisabled) {
+    return `bg-moon-gray bn`;
+  }
+
+  if (color === 'basic') {
+    return `bg-white hover-moon-gray shadow-4 bn pointer`;
+  }
+
+  const styles = generateCSS({
+    color: 'white',
+    backgroundColor: theme.colors[color][100]
+  });
+  return `${styles} dim link shadow-4 bn pointer`;
+};
+
+const strokedStyling = (theme, color, isDisabled) => {
+  if (isDisabled) {
+    return `bg-white ba b--moon-gray`;
+  }
+
+  if (color === 'basic') {
+    return `bg-white ba b--moon-gray pointer`;
+  }
+
+  const styles = generateCSS({
+    backgroundColor: 'white',
+    color: theme.colors[color][100]
+  });
+  return `${styles} dim link pointer ba b--moon-gray`;
+};
+
+const solidStyling = (theme, color, isDisabled) => {
+  if (isDisabled) {
+    return `bg-moon-gray bn`;
+  }
+
+  if (color === 'basic') {
+    return `bg-white bn pointer`;
+  }
+
+  const styles = generateCSS({
+    color: 'white',
+    backgroundColor: theme.colors[color][100]
+  });
+  return `${styles} dim link bn pointer`;
+};
+
+const buttonTypes = (type, theme, color, isDisabled) => {
+  switch (type) {
+    case 'basic':
+      return basicStyling(theme, color, isDisabled);
+
+    case 'raised':
+      return raisedStyling(theme, color, isDisabled);
+
+    case 'stroked':
+      return strokedStyling(theme, color, isDisabled);
+
+    case 'solid':
+      return solidStyling(theme, color, isDisabled);
+
+    default:
+      return basicStyling(theme, color, isDisabled);
+  }
+};
+
+const useButtonStyle = (color = 'basic', type = 'basic', isDisabled = false) => {
+  console.log('in use style', color);
+  const theme = useTheme();
+  const buttonClasses = buttonTypes(type, theme, color, isDisabled);
+  return `${baseClasses} ${buttonClasses}`;
+};
+
+const Button = ({
+  type: _type = 'basic',
+  color: _color = 'basic',
+  ariaLabel,
+  isDisabled,
+  onClick,
+  children,
+  ...rest
+}) => {
+  console.log('in the button', _color);
+  const buttonClass = useButtonStyle(_color, _type, isDisabled);
+  return React.createElement("button", Object.assign({
+    type: 'button',
+    onClick: onClick,
+    className: buttonClass,
+    disabled: isDisabled,
+    "aria-label": ariaLabel
+  }, rest), children);
+};
+
+export { Alert, BreakpointProvider, Button, Example, Modal, ThemeProvider$1 as ThemeProvider, theme, useBreakPoint, useModal, useTronTheme };
 //# sourceMappingURL=index.modern.js.map

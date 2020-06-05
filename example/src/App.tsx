@@ -1,53 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './App.css'
+
+import ThemedApp from './ThemedApp'
 import { ThemeProvider } from 'tron-ui'
-import SideNav from './pages/SideNav'
-import Header from './pages/Header'
-import Main from './pages/Main'
-// import { theme } from "./theme";
-import { useBreakPoint } from 'tron-ui'
+import { altTheme } from './altTheme'
 
 const App: React.FC = () => {
-  const [sideIsOpen, setSideIsOpen] = useState(true)
-  const [sideNavClass, setSideNavClass] = useState('')
-  
-  const breakpoints = useBreakPoint()
+  const [useAltTheme, setUseAltTheme] = useState(false)
 
-  const handleMenuToggle = () => {
-    setSideIsOpen((old) => !old)
+  console.log(useAltTheme)
+
+  function handleThemeChange() {
+    setUseAltTheme(old => !old)
   }
 
-  const menuClassIsOpen = sideIsOpen ? '' : 'dn'
-
-  useEffect(() => {
-    if (!breakpoints['m']) {
-      setSideNavClass('')
-      setSideIsOpen(true)
-    }
-
-    if (breakpoints['m']) {
-      setSideIsOpen(false)
-      setSideNavClass('')
-    } else {
-      setSideNavClass('dn-m')
-    }
-  }, [setSideNavClass, breakpoints])
-
   return (
-    // <ThemeProvider theme={theme}>
-    <ThemeProvider>
-      <Header menuToggle={handleMenuToggle} />
-      <div className='flex'>
-        <div
-          className={`overflow-hidden w5-l ${sideNavClass} ${menuClassIsOpen}`}
-        >
-          <SideNav />
-        </div>
-        <div className='flex-auto'>
-          <Main />
-        </div>
-      </div>
-    </ThemeProvider>
+    <>
+      {useAltTheme ? (
+        <ThemeProvider theme={altTheme}>
+          <ThemedApp handleThemeChange={handleThemeChange} />
+        </ThemeProvider>
+      ) : (
+        <ThemeProvider>
+          <ThemedApp handleThemeChange={handleThemeChange} />
+        </ThemeProvider>
+      )}
+    </>
   )
 }
 

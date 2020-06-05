@@ -4,6 +4,7 @@ var emotion = require('emotion');
 var React = require('react');
 var React__default = _interopDefault(React);
 var fi = require('react-icons/fi');
+var ReactDOM = _interopDefault(require('react-dom'));
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -2036,40 +2037,40 @@ var Example = function Example(_ref) {
 var theme = {
   colors: {
     primary: {
-      P100: '#003E6B',
-      P200: '#0A558C',
-      P300: '#0F609B',
-      P400: '#186FAF',
-      P500: '#2680C2',
-      P600: '#4098D7',
-      P700: '#62B0E8',
-      P800: '#84C5F4',
-      P900: '#B6E0FE',
-      P1000: '#DCEEFB'
+      100: '#003E6B',
+      200: '#0A558C',
+      300: '#0F609B',
+      400: '#186FAF',
+      500: '#2680C2',
+      600: '#4098D7',
+      700: '#62B0E8',
+      800: '#84C5F4',
+      900: '#B6E0FE',
+      1000: '#DCEEFB'
     },
     secondary: {
-      S100: '#8D2B0B',
-      S200: '#B44D12',
-      S300: '#CB6E17',
-      S400: '#DE911D',
-      S500: '#F0B429',
-      S600: '#F7C948',
-      S700: '#FADB5F',
-      S800: '#FCE588',
-      S900: '#FFF3C4',
-      S1000: '#FFFBEA'
+      100: '#8D2B0B',
+      200: '#B44D12',
+      300: '#CB6E17',
+      400: '#DE911D',
+      500: '#F0B429',
+      600: '#F7C948',
+      700: '#FADB5F',
+      800: '#FCE588',
+      900: '#FFF3C4',
+      1000: '#FFFBEA'
     },
-    neutrals: {
-      N100: '#102A43',
-      N200: '#243B53',
-      N300: '#334E68',
-      N400: '#486581',
-      N500: '#627D98',
-      N600: '#829AB1',
-      N700: '#9FB3C8',
-      N800: '#BCCCDC',
-      N900: '#D9E2EC',
-      N1000: '#F0F4F8'
+    neutral: {
+      100: '#102A43',
+      200: '#243B53',
+      300: '#334E68',
+      400: '#486581',
+      500: '#627D98',
+      600: '#829AB1',
+      700: '#9FB3C8',
+      800: '#BCCCDC',
+      900: '#D9E2EC',
+      1000: '#F0F4F8'
     },
     support: {
       error: {
@@ -2083,9 +2084,9 @@ var theme = {
         dark: '#f57c00'
       },
       info: {
-        light: '#64b5f6',
-        main: '#2196f3',
-        dark: '#1976d2'
+        light: '',
+        main: '',
+        dark: ''
       },
       success: {
         light: '#81c784',
@@ -2099,6 +2100,9 @@ var theme = {
 var ThemeProvider$1 = function ThemeProvider$1(_ref) {
   var theme = _ref.theme,
       children = _ref.children;
+  theme.colors.support.info.light = theme.colors.primary[900];
+  theme.colors.support.info.main = theme.colors.primary[500];
+  theme.colors.support.info.dark = theme.colors.primary[200];
   return jsx(ThemeProvider, {
     theme: theme
   }, children);
@@ -2108,18 +2112,22 @@ ThemeProvider$1.defaultProps = {
   theme: theme
 };
 
+function useTronTheme() {
+  return useTheme();
+}
+
 var iconMap = {
   info: React__default.createElement(fi.FiInfo, {
-    size: '30px'
+    size: '25px'
   }),
   success: React__default.createElement(fi.FiCheckCircle, {
-    size: '30px'
+    size: '25px'
   }),
   warning: React__default.createElement(fi.FiAlertCircle, {
-    size: '30px'
+    size: '25px'
   }),
   error: React__default.createElement(fi.FiXCircle, {
-    size: '30px'
+    size: '25px'
   })
 };
 
@@ -2152,7 +2160,7 @@ var Alert = function Alert(_ref) {
   }, iconMap[type])) : null, React__default.createElement("div", {
     className: 'fl w-90 pa2'
   }, React__default.createElement("div", null, React__default.createElement("h2", {
-    className: 'fw4 mt0 mb1'
+    className: 'fw4 f4 mt0 mb1'
   }, title), subtitle ? React__default.createElement("p", {
     className: 'measure lh-copy mv0'
   }, subtitle) : null)))));
@@ -2231,10 +2239,218 @@ function useBreakPoint() {
   return context;
 }
 
+var useModal = function useModal() {
+  var _useState = React.useState(false),
+      isOpen = _useState[0],
+      setIsOpen = _useState[1];
+
+  var toggle = React.useCallback(function () {
+    setIsOpen(!isOpen);
+  }, [setIsOpen, isOpen]);
+  React.useEffect(function () {
+    return function () {
+      toggle();
+    };
+  }, [toggle]);
+  return {
+    isOpen: isOpen,
+    toggle: toggle
+  };
+};
+
+var Modal = function Modal(_ref) {
+  var isShowing = _ref.isShowing,
+      hide = _ref.hide,
+      children = _ref.children;
+  var overLayRef = React.useRef(null);
+
+  function handleOverlayClicked(e) {
+    if (e.target !== e.currentTarget) {
+      return;
+    } else {
+      hide();
+    }
+  }
+
+  return isShowing ? ReactDOM.createPortal(React__default.createElement(React__default.Fragment, null, React__default.createElement("div", {
+    ref: overLayRef,
+    className: 'fixed top-0 left-0 z-999 w-100 h-100 bg-mid-gray o-50'
+  }), React__default.createElement("div", {
+    className: 'fixed pa2 top-0 left-0 z-9999 w-100 h-100 overflow-x-hidden overflow-y-auto outline-0',
+    "aria-modal": true,
+    "aria-hidden": true,
+    tabIndex: -1,
+    role: 'dialog',
+    onClick: handleOverlayClicked
+  }, React__default.createElement("div", {
+    className: 'mt6 z-5 bg-white relative center br2 mw6 pa2 shadow-3'
+  }, React__default.createElement("div", {
+    id: 'modal-header',
+    className: 'flex'
+  }, React__default.createElement("button", {
+    onClick: hide,
+    type: 'button',
+    className: 'bg-white bn pointer absolute top-1 right-1 dim'
+  }, React__default.createElement(fi.FiX, {
+    size: '25px'
+  }))), React__default.createElement("div", {
+    className: 'ph2'
+  }, children)))), document.body) : null;
+};
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+var generateCSS = function generateCSS(styles) {
+  return emotion.cx(emotion.css(styles));
+};
+
+var baseClasses = "inline-flex ph3 lh-copy fw4 dib f5 pv2 br2 input-reset items-center justify-center relative outline:0 v-mid";
+
+var basicStyling = function basicStyling(theme, color, isDisabled) {
+  if (isDisabled) {
+    return "bg-white bn";
+  }
+
+  if (color === 'basic') {
+    return "bg-white hover-moon-gray bn";
+  }
+
+  var styles = generateCSS({
+    backgroundColor: 'white',
+    color: theme.colors[color][100]
+  });
+  return styles + " dim link bn pointer";
+};
+
+var raisedStyling = function raisedStyling(theme, color, isDisabled) {
+  if (isDisabled) {
+    return "bg-moon-gray bn";
+  }
+
+  if (color === 'basic') {
+    return "bg-white hover-moon-gray shadow-4 bn pointer";
+  }
+
+  var styles = generateCSS({
+    color: 'white',
+    backgroundColor: theme.colors[color][100]
+  });
+  return styles + " dim link shadow-4 bn pointer";
+};
+
+var strokedStyling = function strokedStyling(theme, color, isDisabled) {
+  if (isDisabled) {
+    return "bg-white ba b--moon-gray";
+  }
+
+  if (color === 'basic') {
+    return "bg-white ba b--moon-gray pointer";
+  }
+
+  var styles = generateCSS({
+    backgroundColor: 'white',
+    color: theme.colors[color][100]
+  });
+  return styles + " dim link pointer ba b--moon-gray";
+};
+
+var solidStyling = function solidStyling(theme, color, isDisabled) {
+  if (isDisabled) {
+    return "bg-moon-gray bn";
+  }
+
+  if (color === 'basic') {
+    return "bg-white bn pointer";
+  }
+
+  var styles = generateCSS({
+    color: 'white',
+    backgroundColor: theme.colors[color][100]
+  });
+  return styles + " dim link bn pointer";
+};
+
+var buttonTypes = function buttonTypes(type, theme, color, isDisabled) {
+  switch (type) {
+    case 'basic':
+      return basicStyling(theme, color, isDisabled);
+
+    case 'raised':
+      return raisedStyling(theme, color, isDisabled);
+
+    case 'stroked':
+      return strokedStyling(theme, color, isDisabled);
+
+    case 'solid':
+      return solidStyling(theme, color, isDisabled);
+
+    default:
+      return basicStyling(theme, color, isDisabled);
+  }
+};
+
+var useButtonStyle = function useButtonStyle(color, type, isDisabled) {
+  if (color === void 0) {
+    color = 'basic';
+  }
+
+  if (type === void 0) {
+    type = 'basic';
+  }
+
+  if (isDisabled === void 0) {
+    isDisabled = false;
+  }
+
+  console.log('in use style', color);
+  var theme = useTheme();
+  var buttonClasses = buttonTypes(type, theme, color, isDisabled);
+  return baseClasses + " " + buttonClasses;
+};
+
+var Button = function Button(_ref) {
+  var _ref$type = _ref.type,
+      type = _ref$type === void 0 ? 'basic' : _ref$type,
+      _ref$color = _ref.color,
+      color = _ref$color === void 0 ? 'basic' : _ref$color,
+      ariaLabel = _ref.ariaLabel,
+      isDisabled = _ref.isDisabled,
+      onClick = _ref.onClick,
+      children = _ref.children,
+      rest = _objectWithoutPropertiesLoose(_ref, ["type", "color", "ariaLabel", "isDisabled", "onClick", "children"]);
+
+  console.log('in the button', color);
+  var buttonClass = useButtonStyle(color, type, isDisabled);
+  return React__default.createElement("button", Object.assign({
+    type: 'button',
+    onClick: onClick,
+    className: buttonClass,
+    disabled: isDisabled,
+    "aria-label": ariaLabel
+  }, rest), children);
+};
+
 exports.Alert = Alert;
 exports.BreakpointProvider = BreakpointProvider;
+exports.Button = Button;
 exports.Example = Example;
+exports.Modal = Modal;
 exports.ThemeProvider = ThemeProvider$1;
 exports.theme = theme;
 exports.useBreakPoint = useBreakPoint;
+exports.useModal = useModal;
+exports.useTronTheme = useTronTheme;
 //# sourceMappingURL=index.js.map
