@@ -28,6 +28,17 @@ npm link example/node_modules/react
 
 This will make the library use the application's react copy
 
+For pushing to gh-pages
+1. In Your Application:
+a) cd node_modules/react && npm link
+b) cd node_modules/react-dom && npm link
+
+2. In Your Library
+a) npm link react
+b) npm link react-dom
+
+3)Stop your dev-server and do `npm start` again.
+
 
 ##Type Support
 Typing Theme --- not working for now
