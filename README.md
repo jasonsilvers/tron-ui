@@ -10,7 +10,7 @@ https://jasonsilvers.github.io/tron-ui/
 ## Install
 
 ```bash
-npm i @jason.silvers/tron-ui
+npm i @jasonsilvers/tron-ui
 ```
 
 ## License
