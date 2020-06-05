@@ -1,8 +1,8 @@
-# tron-ui
+# TRON-UI
 
-> UI Component library
+> React UI Component library
 
-[![NPM](https://img.shields.io/npm/v/tron-ui.svg)](https://www.npmjs.com/package/@jasonsilvers/tron-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Demo/Docs
 https://jasonsilvers.github.io/tron-ui/
