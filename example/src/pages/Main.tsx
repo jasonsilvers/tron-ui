@@ -1,6 +1,6 @@
 import React from 'react'
 import AlertPage from '../pages/AlertPage'
-import { Switch, Route } from 'react-router'
+import { Switch, Route, Redirect } from 'react-router'
 import Start from './Start'
 import Theming from './Theming'
 import UseBreakpointPage from './useBreakpointPage'
@@ -12,6 +12,9 @@ const Main: React.FC = () => {
   return (
     <div className='pv2 ph4'>
       <Switch>
+        <Route path='/start'>
+          <Start />
+        </Route>
         <Route path='/alert'>
           <AlertPage />
         </Route>
@@ -31,7 +34,7 @@ const Main: React.FC = () => {
           <UseThemePage />
         </Route>
         <Route path='/'>
-          <Start />
+          <Redirect to='/start' />
         </Route>
       </Switch>
     </div>
