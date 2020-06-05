@@ -2158,10 +2158,10 @@ var Alert = function Alert(_ref) {
   }, React__default.createElement("div", {
     className: 'flex justify-end'
   }, iconMap[type])) : null, React__default.createElement("div", {
-    className: 'fl w-90 pa2'
+    className: 'fl w-90 pa2 items-center'
   }, React__default.createElement("div", null, React__default.createElement("h2", {
-    className: 'fw4 f4 mt0 mb1'
-  }, title), subtitle ? React__default.createElement("p", {
+    className: 'fw4 f4 mt0 mb0'
+  }, title)), React__default.createElement("div", null, subtitle ? React__default.createElement("p", {
     className: 'measure lh-copy mv0'
   }, subtitle) : null)))));
 };

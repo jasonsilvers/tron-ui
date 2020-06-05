@@ -41,9 +41,11 @@ const Alert: React.FC<AlertProps> = ({
               <div className='flex justify-end'>{iconMap[type]}</div>
             </div>
           ) : null}
-          <div className='fl w-90 pa2'>
+          <div className='fl w-90 pa2 items-center'>
             <div>
-              <h2 className='fw4 f4 mt0 mb1'>{title}</h2>
+              <h2 className='fw4 f4 mt0 mb0'>{title}</h2>
+            </div>
+            <div>
               {subtitle ? (
                 <p className='measure lh-copy mv0'>{subtitle}</p>
               ) : null}
