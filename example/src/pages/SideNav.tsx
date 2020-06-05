@@ -49,18 +49,18 @@ const SideNav: React.FC = () => {
           Alert
         </NavLink>
         <NavLink
-          to='/modal'
-          activeClassName={cx(`${bgThemeStyle} br3`)}
-          className={linkClass}
-        >
-          Modal
-        </NavLink>
-        <NavLink
           to='/button'
           activeClassName={cx(`${bgThemeStyle} br3`)}
           className={linkClass}
         >
           Button
+        </NavLink>
+        <NavLink
+          to='/modal'
+          activeClassName={cx(`${bgThemeStyle} br3`)}
+          className={linkClass}
+        >
+          Modal
         </NavLink>
       </div>
       <h1 className='f4 lh-copy fw3 pt1 ph1'>Utilities</h1>
