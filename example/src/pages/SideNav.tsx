@@ -23,7 +23,7 @@ const SideNav: React.FC = () => {
       className={`ph2 pv3 vh-100 br bw1 ${brThemeStyle}`}
       aria-label='main navigation'
     >
-      <div className='nowra br b--light-gray w-100'>
+      <div className='nowra w-100'>
         <NavLink
           to='/start'
           activeClassName={cx(`${bgThemeStyle} br3`)}
@@ -40,7 +40,7 @@ const SideNav: React.FC = () => {
         </NavLink>
       </div>
       <h1 className='f4 lh-copy fw3 ph1'>Components</h1>
-      <div className='nowra br b--light-gray w-100'>
+      <div className='nowra w-100'>
         <NavLink
           to='/alert'
           activeClassName={cx(`${bgThemeStyle} br3`)}
@@ -64,7 +64,7 @@ const SideNav: React.FC = () => {
         </NavLink>
       </div>
       <h1 className='f4 lh-copy fw3 pt1 ph1'>Utilities</h1>
-      <div className='nowra br b--light-gray w-100'>
+      <div className='nowra w-100'>
         <NavLink
           to='/breakpoint'
           activeClassName={cx(`${bgThemeStyle} br3`)}
