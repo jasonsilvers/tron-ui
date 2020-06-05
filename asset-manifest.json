@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/tron-ui/static/css/main.474be8e5.chunk.css",
-    "main.js": "/tron-ui/static/js/main.201dbdfb.chunk.js",
-    "main.js.map": "/tron-ui/static/js/main.201dbdfb.chunk.js.map",
+    "main.js": "/tron-ui/static/js/main.fdf1fe35.chunk.js",
+    "main.js.map": "/tron-ui/static/js/main.fdf1fe35.chunk.js.map",
     "runtime-main.js": "/tron-ui/static/js/runtime-main.0e67ac03.js",
     "runtime-main.js.map": "/tron-ui/static/js/runtime-main.0e67ac03.js.map",
-    "static/js/2.6e47e146.chunk.js": "/tron-ui/static/js/2.6e47e146.chunk.js",
-    "static/js/2.6e47e146.chunk.js.map": "/tron-ui/static/js/2.6e47e146.chunk.js.map",
+    "static/js/2.a03fb590.chunk.js": "/tron-ui/static/js/2.a03fb590.chunk.js",
+    "static/js/2.a03fb590.chunk.js.map": "/tron-ui/static/js/2.a03fb590.chunk.js.map",
     "index.html": "/tron-ui/index.html",
-    "precache-manifest.6db4e785ed14c4b2bf5b7adbdb41065a.js": "/tron-ui/precache-manifest.6db4e785ed14c4b2bf5b7adbdb41065a.js",
+    "precache-manifest.acbbe6ae3fc94700022d46e2037a390c.js": "/tron-ui/precache-manifest.acbbe6ae3fc94700022d46e2037a390c.js",
     "service-worker.js": "/tron-ui/service-worker.js",
     "static/css/main.474be8e5.chunk.css.map": "/tron-ui/static/css/main.474be8e5.chunk.css.map",
-    "static/js/2.6e47e146.chunk.js.LICENSE.txt": "/tron-ui/static/js/2.6e47e146.chunk.js.LICENSE.txt",
-    "static/js/main.201dbdfb.chunk.js.LICENSE.txt": "/tron-ui/static/js/main.201dbdfb.chunk.js.LICENSE.txt"
+    "static/js/2.a03fb590.chunk.js.LICENSE.txt": "/tron-ui/static/js/2.a03fb590.chunk.js.LICENSE.txt",
+    "static/js/main.fdf1fe35.chunk.js.LICENSE.txt": "/tron-ui/static/js/main.fdf1fe35.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0e67ac03.js",
-    "static/js/2.6e47e146.chunk.js",
+    "static/js/2.a03fb590.chunk.js",
     "static/css/main.474be8e5.chunk.css",
-    "static/js/main.201dbdfb.chunk.js"
+    "static/js/main.fdf1fe35.chunk.js"
   ]
 }
