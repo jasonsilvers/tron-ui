@@ -10,10 +10,10 @@ const Start: React.FC<Props> = () => {
 
   const installString = `
   // with npm
-  npm i @jason.silvers/tron-ui
+  npm i @jasonsilvers/tron-ui
 
   // with yarn
-  yarn i @jason.silvers/tron-ui
+  yarn i @jasonsilvers/tron-ui
     
     `
 
