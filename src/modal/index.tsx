@@ -42,7 +42,7 @@ const Modal: React.FC<ModalProps> = ({ isShowing, hide, children }) => {
         <React.Fragment>
           <div
             ref={overLayRef}
-            className='fixed top-0 left-0 z-999 w-100 h-100 bg-mid-gray o-50'
+            className='fixed top-0 left-0 z-999 w-100 h-100 bg-moon-gray o-50'
           />
           <div
             className='fixed pa2 top-0 left-0 z-9999 w-100 h-100 overflow-x-hidden overflow-y-auto outline-0'

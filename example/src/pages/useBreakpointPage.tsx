@@ -64,7 +64,7 @@ const useBreakpointPage: React.FC<Props> = () => {
         Import
       </h2>
       <h2 className='f4 fw3 pt2 lh-copy'>
-        Wrap your app in the <code className='bg-light-gray f5'> BreakpointProdiver </code>
+        Wrap your app in the <code className='bg-light-gray f5'> BreakpointProvider </code>
       </h2>
       <SyntaxHighlighter language='javascript' style={atomOneDark}>
         {providerString}

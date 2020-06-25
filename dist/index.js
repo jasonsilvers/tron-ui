@@ -4,6 +4,7 @@ var emotion = require('emotion');
 var React = require('react');
 var React__default = _interopDefault(React);
 var fi = require('react-icons/fi');
+var alert = require('@reach/alert');
 var ReactDOM = _interopDefault(require('react-dom'));
 
 function _defineProperty(obj, key, value) {
@@ -2147,7 +2148,7 @@ var Alert = function Alert(_ref) {
     borderLeft: '5px solid',
     borderColor: colors.support[type].dark
   });
-  return React__default.createElement("section", {
+  return React__default.createElement("div", null, React__default.createElement(alert.Alert, {
     className: 'ph1 ph2-ns pv1'
   }, React__default.createElement("article", {
     className: emotion.cx(styles + " mw7 center br2 overflow-hidden")
@@ -2163,7 +2164,7 @@ var Alert = function Alert(_ref) {
     className: 'fw4 f4 mt0 mb0'
   }, title)), React__default.createElement("div", null, subtitle ? React__default.createElement("p", {
     className: 'measure lh-copy mv0'
-  }, subtitle) : null)))));
+  }, subtitle) : null))))));
 };
 
 var queryList = {
@@ -2274,7 +2275,7 @@ var Modal = function Modal(_ref) {
 
   return isShowing ? ReactDOM.createPortal(React__default.createElement(React__default.Fragment, null, React__default.createElement("div", {
     ref: overLayRef,
-    className: 'fixed top-0 left-0 z-999 w-100 h-100 bg-mid-gray o-50'
+    className: 'fixed top-0 left-0 z-999 w-100 h-100 bg-moon-gray o-50'
   }), React__default.createElement("div", {
     className: 'fixed pa2 top-0 left-0 z-9999 w-100 h-100 overflow-x-hidden overflow-y-auto outline-0',
     "aria-modal": true,
